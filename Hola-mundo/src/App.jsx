@@ -49,6 +49,7 @@ function FetchAPI(){
     fetch('http://localhost:3000/equipos/lista')
       .then((respuesta) => respuesta.json())
       .then((data) => setEquiposFutbol(data))
+      
 
   }, []);//cuando esta vacia se ejecuta primero
   
