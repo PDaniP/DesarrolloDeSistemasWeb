@@ -1,0 +1,50 @@
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  background: #f7f7f7;
+}
+
+.app-container {
+  text-align: center;
+  padding: 24px;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  max-width: 420px;
+  width: 100%;
+}
+
+.app-container img {
+  max-width: 100%;
+  height: auto;
+  margin: 20px 0;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.button-group button {
+  min-width: 110px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.button-group button:hover {
+  background: #005dc1;
+}
