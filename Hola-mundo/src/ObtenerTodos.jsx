@@ -2,7 +2,7 @@
 import React, { useState, useEffect, use } from 'react';
 import Axios from 'axios';
 
-function obtenerTodos() {
+function ObtenerTodos() {
     const [equiposFutbol, setEquiposFutol] = useState([]);
 
     useEffect(() => {

@@ -1,11 +1,11 @@
 //mostrar los datos obtenidos de la API
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import obtenerTodos from './ObtenerTodos';
-import obtenerPorID from './ObtenerPorID';
+import ObtenerTodos from './ObtenerTodos';
+import ObtenerPorID from './ObtenerPorID';
 
 
-function mostrarDatos() {  
+function MostrarDatos() {  
     const equiposFutbol = obtenerTodos();
     const equipo = obtenerPorID();
 

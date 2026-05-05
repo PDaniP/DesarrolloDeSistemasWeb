@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 
-function obtenerPorID() {
+function ObtenerPorID() {
     const [equipo, setEquipo] = useState({});
 
     useEffect(() => {
