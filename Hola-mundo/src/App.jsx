@@ -1,20 +1,20 @@
-import { useEffect, useState } from 'react'
-import './App.css'
-import tanque1 from './assets/lleno.png'
-import tanque2 from './assets/medio.png'
-import tanque3 from './assets/vacio.png'
-import Axios from 'axios'
-
-
+//import { useEffect, useState } from 'react'
+import { useState } from "react";
+import "./App.css";
+import tanque1 from "./assets/lleno.png";
+import tanque2 from "./assets/medio.png";
+import tanque3 from "./assets/vacio.png";
+//import Axios from 'axios'
+import MostrarDatos from "./MostrarDatos";
 
 function App() {
-  const [Tanque, setTanque] = useState(tanque3)
-  const [Estado, setEstado] = useState('Vacio')
+  const [Tanque, setTanque] = useState(tanque3);
+  const [Estado, setEstado] = useState("Vacio");
 
   const llenarMaximo = () => {
-    setTanque(tanque1)
-    setEstado('Lleno')
-  }
+    setTanque(tanque1);
+    setEstado("Lleno");
+  };
 
   return (
     <div className="app-container">
@@ -22,27 +22,34 @@ function App() {
       <img src={Tanque} alt={`Tanque ${Estado}`} />
       <div className="button-group">
         <button onClick={llenarMaximo}>Llenar Máximo</button>
-        <button onClick={() => {
-          setTanque(tanque2)
-          setEstado('Mitad')
-        }}>Mitad</button>
-        <button onClick={() => {
-          setTanque(tanque3)
-          setEstado('Vacio')
-        }}>Vaciar</button>
+        <button
+          onClick={() => {
+            setTanque(tanque2);
+            setEstado("Mitad");
+          }}
+        >
+          Mitad
+        </button>
+        <button
+          onClick={() => {
+            setTanque(tanque3);
+            setEstado("Vacio");
+          }}
+        >
+          Vaciar
+        </button>
       </div>
 
       <h2>Estado actual: {Estado}</h2>
 
       <div>
-        <FetchAPI />
+        {/* <FetchAPI /> */}
+        <MostrarDatos />
       </div>
-
     </div>
-
-  )
+  );
 }
-
+/*
 //funcion para consumir y traer datos de la API
 function FetchAPI() {
   const [equiposFutbol, setEquiposFutbol] = useState([]);
@@ -54,7 +61,7 @@ function FetchAPI() {
       .then((data) => setEquiposFutbol(data))
   }, []);//cuando esta vacia se ejecuta primero
   */
-
+/*
   useEffect(() => {
     Axios.get('http://localhost:3000/equipos/idEquipo/1')
       .then((respuesta) => {
@@ -76,7 +83,7 @@ function FetchAPI() {
           </li>
         ))}
       </ul>
-      */}
+      */ /*}
 
       <p>{equipo.nombre}</p>
 
@@ -88,5 +95,5 @@ function FetchAPI() {
 
   )
 
-}
-export default App
+}*/
+export default App;
