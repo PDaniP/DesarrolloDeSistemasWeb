@@ -3,6 +3,9 @@ import './App.css'
 import tanque1 from './assets/lleno.png'
 import tanque2 from './assets/medio.png'
 import tanque3 from './assets/vacio.png'
+import Axios from 'axios'
+
+
 
 function App() {
   const [Tanque, setTanque] = useState(tanque3)
@@ -36,44 +39,54 @@ function App() {
       </div>
 
     </div>
-    
+
   )
 }
 
 //funcion para consumir y traer datos de la API
-function FetchAPI(){
+function FetchAPI() {
   const [equiposFutbol, setEquiposFutbol] = useState([]);
-  
+  const [equipo, setEquipo] = useState({});
+  /*
   useEffect(() => {
-
     fetch('http://localhost:3000/equipos/lista')
       .then((respuesta) => respuesta.json())
       .then((data) => setEquiposFutbol(data))
-      
-
   }, []);//cuando esta vacia se ejecuta primero
-  
-  return(
+  */
+
+  useEffect(() => {
+    Axios.get('http://localhost:3000/equipos/idEquipo/1')
+      .then((respuesta) => {
+        setEquiposFutbol(respuesta.data);
+        setEquipo(respuesta.data);
+      })
+  }, []);
+
+
+  return (
     <div>
       <h1>Consumo de la API</h1>
+
+      {/*
       <ul>
         {equiposFutbol.map((equipo) => (
           <li key={equipo.id}>
             <span>{equipo.nombre}</span>
           </li>
         ))}
-
-
       </ul>
-    
-    
-    
+      */}
+
+      <p>{equipo.nombre}</p>
+
+
+
+
+
     </div>
 
-    
   )
 
 }
-
-
 export default App
