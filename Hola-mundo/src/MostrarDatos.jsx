@@ -2,14 +2,16 @@
 //import React, { useState, useEffect } from "react";
 import { useState } from "react";
 //import Axios from "axios";
-import useObtenerTodos from "./ObtenerTodos";
+//6import useObtenerTodos from "./ObtenerTodos";
 import useObtenerPorID from "./ObtenerPorID";
+import { ListaEquipos } from "./obtenerTodos";
 
-function MostrarDatos() {
+
+function MostrarDatos({equipo}) {
   const [id, setId] = useState(1);
 
-  const equiposFutbol = useObtenerTodos();
-  const equipo = useObtenerPorID(id);
+  //const equiposFutbol = useObtenerTodos();
+  //const equipo = useObtenerPorID(id);
 
   return (
     <div>
@@ -25,12 +27,18 @@ function MostrarDatos() {
       <p>{equipo?.nombre}</p>
 
       <h2>Lista de equipos</h2>
-
+      {/*
       <ul>
         {equiposFutbol.map((eq) => (
           <li key={eq.id}>{eq.nombre}</li>
         ))}
       </ul>
+      */}
+
+      <div>
+        <li key={equipo?.id}>{equipo?.nombre}</li>
+      </div>
+
     </div>
   );
 }
