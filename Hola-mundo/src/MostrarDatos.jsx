@@ -1,14 +1,12 @@
 //mostrar los datos obtenidos de la API
-//import React, { useState, useEffect } from "react";
+
 import { useState } from "react";
-//import Axios from "axios";
-//6import useObtenerTodos from "./ObtenerTodos";
-import useObtenerPorID from "./ObtenerPorID";
-import { ListaEquipos } from "./obtenerTodos";
+//import useObtenerPorID from "./ObtenerPorID";
+//import useObtenerTodos from "./obtenerTodos";
 
 
-function MostrarDatos({equipo}) {
-  const [id, setId] = useState(1);
+function MostrarDatos({ equipos, equipoPorID, id, setId }) {
+  //const [id, setId] = useState(1);
 
   //const equiposFutbol = useObtenerTodos();
   //const equipo = useObtenerPorID(id);
@@ -24,21 +22,15 @@ function MostrarDatos({equipo}) {
       />
 
       <h3>Resultado:</h3>
-      <p>{equipo?.nombre}</p>
+      <p>{equipoPorID?.nombre || "No encontrado"}</p>
 
       <h2>Lista de equipos</h2>
-      {/*
+      
       <ul>
-        {equiposFutbol.map((eq) => (
+        {equipos.map((eq) => (
           <li key={eq.id}>{eq.nombre}</li>
         ))}
       </ul>
-      */}
-
-      <div>
-        <li key={equipo?.id}>{equipo?.nombre}</li>
-      </div>
-
     </div>
   );
 }

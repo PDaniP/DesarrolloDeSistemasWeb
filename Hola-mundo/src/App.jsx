@@ -4,12 +4,21 @@ import "./App.css";
 import tanque1 from "./assets/lleno.png";
 import tanque2 from "./assets/medio.png";
 import tanque3 from "./assets/vacio.png";
-//import Axios from 'axios'
+
 import MostrarDatos from "./MostrarDatos";
+import useObtenerTodos from "./ObtenerTodos";
+import useObtenerPorID from "./ObtenerPorID";
 
 function App() {
   const [Tanque, setTanque] = useState(tanque3);
   const [Estado, setEstado] = useState("Vacio");
+
+  // 👇 ESTADO PARA EL ID
+  const [id, setId] = useState(1);
+
+  // 👇 HOOKS
+  const equipos = useObtenerTodos();
+  const equipoPorID = useObtenerPorID(id);
 
   const llenarMaximo = () => {
     setTanque(tanque1);
@@ -18,6 +27,7 @@ function App() {
 
   return (
     <div className="app-container">
+      {/* 
       <h1>Control De tanque</h1>
       <img src={Tanque} alt={`Tanque ${Estado}`} />
       <div className="button-group">
@@ -41,14 +51,22 @@ function App() {
       </div>
 
       <h2>Estado actual: {Estado}</h2>
-
+      */}
       <div>
         {/* <FetchAPI /> */}
-        <MostrarDatos />
+        {/*<MostrarDatos />*/}
+        {/* 👇 ACA PASAS TODO POR PROPS */}
+        <MostrarDatos
+          equipos={equipos}
+          equipoPorID={equipoPorID}
+          id={id}
+          setId={setId}
+        />
       </div>
     </div>
   );
 }
+export default App;
 /*
 //funcion para consumir y traer datos de la API
 function FetchAPI() {
@@ -96,4 +114,4 @@ function FetchAPI() {
   )
 
 }*/
-export default App;
+//export default App;

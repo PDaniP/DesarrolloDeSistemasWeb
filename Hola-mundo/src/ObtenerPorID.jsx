@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Axios from "axios";
 
 function useObtenerPorID(id) {
-  const [equipo, setEquipo] = useState({});
+  const [equipo, setEquipo] = useState(null);
 
   useEffect(() => {
     if (!id || isNaN(id)) return; // Verificar si el ID es válido antes de hacer la solicitud
