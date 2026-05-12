@@ -9,10 +9,39 @@ import React, { useState } from "react";
 function Formulario() {
   const [form, setForm] = useState({
     nombre: "",
+    pais: "",
     descripcion: "",
   });
 
 
+return (
+
+  <form onSubmit={handleSubmit}>
+  <input
+    type="text"
+    name="nombre"
+    placeholder="Nombre"
+    onChange={handleChange}
+  />
+
+  <input
+    type="text"
+    name="pais"
+    placeholder="País"
+    onChange={handleChange}
+  />
+
+  <input
+    type="text"
+    name="descripcion"
+    placeholder="Descripción"
+    onChange={handleChange}
+  />
+
+  <button type="submit">Guardar</button>
+</form>
+
+);
 }
 
 /*
