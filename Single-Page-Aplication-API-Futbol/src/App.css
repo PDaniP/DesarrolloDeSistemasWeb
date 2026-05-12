@@ -19,7 +19,7 @@
 
 .hero {
   position: relative;
-
+margin-top: 20px;
   .base,
   .framework,
   .vite {
@@ -54,7 +54,15 @@
     transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
       scale(0.8);
   }
+
 }
+
+.quehacer {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: var(--text);
+  }
 
 #center {
   display: flex;
@@ -73,7 +81,7 @@
 #next-steps {
   display: flex;
   border-top: 1px solid var(--border);
-  text-align: left;
+  text-align: center;
 
   & > div {
     flex: 1 1 0;
@@ -93,6 +101,7 @@
     flex-direction: column;
     text-align: center;
   }
+
 }
 
 #docs {
@@ -181,4 +190,18 @@
     right: 0;
     border-right-color: var(--border);
   }
+}
+
+button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  background-color: #707291;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #535bf2;
 }

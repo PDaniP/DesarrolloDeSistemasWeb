@@ -1,11 +1,10 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import heroImg from "./assets/hero.png";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [vista, setVista] = useState("menu");
 
   return (
     <>
@@ -16,57 +15,52 @@ function App() {
         </div>
         <div>
           <h1>Single Page Aplication de Futbol</h1>
-          <p>
-            Selecciona lo que quieres hacer.
-          </p>
+          <p className="quehacer">Selecciona lo que quieres hacer.</p>
         </div>
       </section>
 
       <div className="ticks"></div>
 
-      <section id="next-steps">
-        <div id="docs">
+      {vista === "menu" && (
+        <section id="next-steps">
+          <div id="docs">
+            <h2>Buscar equipo</h2>
+            <p>Puedes buscar el equipo por nombre</p>
+            <button onClick={() => setVista("buscar")}>Buscar</button>
+          </div>
+
+          <div id="social">
+            <h2>Ingresa un nuevo equipo</h2>
+            <p>Agregar un equipo a la base de datos</p>
+            <button onClick={() => setVista("agregar")}>Cargar Nuevo</button>
+          </div>
+        </section>
+      )}
+
+      {/*  VISTA BUSCAR */}
+      {vista === "Buscador.jsx" && (
+        <section>
           <h2>Buscar equipo</h2>
-          <p>Puedes buscar el equipo por nombre</p>
-          <ul>
-            <li>
-              <input type="text" />
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Buscar
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Ingresa un nuevo equipo</h2>
-          <p>Puede ir texto</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                Ingreso
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+          <p>Aquí irá el buscador (siguiente paso)</p>
+
+          <button onClick={() => setVista("menu")}>Volver</button>
+        </section>
+      )}
+
+      {/*  VISTA FORMULARIO */}
+      {vista === "Formulario.jsx" && (
+        <section>
+          <h2>Cargar nuevo equipo</h2>
+          <p>Aquí irá el formulario (siguiente paso)</p>
+
+          <button onClick={() => setVista("menu")}>Volver</button>
+        </section>
+      )}
 
       <div className="ticks"></div>
       <section id="spacer"></section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
