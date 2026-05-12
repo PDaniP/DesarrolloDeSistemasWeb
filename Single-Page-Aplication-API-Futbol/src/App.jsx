@@ -2,10 +2,13 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import heroImg from "./assets/hero.png";
 import "./App.css";
+import Buscador from "./components/Buscador";
+import Formulario from "./components/Formulario";
+import MostrarInfo from "./components/MostrarInfo";
 
 function App() {
   const [vista, setVista] = useState("menu");
-
+  const [data, setData] = useState(null);
   return (
     <>
       <section id="center">
@@ -38,22 +41,30 @@ function App() {
       )}
 
       {/*  VISTA BUSCAR */}
-      {vista === "Buscador.jsx" && (
+      {vista === "buscar" && (
         <section>
           <h2>Buscar equipo</h2>
-          <p>Aquí irá el buscador (siguiente paso)</p>
+          <Buscador setData={setData} />
 
           <button onClick={() => setVista("menu")}>Volver</button>
         </section>
       )}
 
       {/*  VISTA FORMULARIO */}
-      {vista === "Formulario.jsx" && (
+      {vista === "agregar" && (
         <section>
           <h2>Cargar nuevo equipo</h2>
-          <p>Aquí irá el formulario (siguiente paso)</p>
+          <Formulario setData={setData} />
 
           <button onClick={() => setVista("menu")}>Volver</button>
+        </section>
+      )}
+
+      {/* 🔥 RESULTADO (SIEMPRE DISPONIBLE) */}
+      {data && (
+        <section>
+          <h2>Resultado</h2>
+          <MostrarInfo data={data} />
         </section>
       )}
 
@@ -64,3 +75,9 @@ function App() {
 }
 
 export default App;
+
+/**
+{vista === "buscar" && <Buscador setData={setData} />}
+{vista === "cargar" && <Formulario setData={setData} />}
+{data && <MostrarInfo data={data} />}
+*/
