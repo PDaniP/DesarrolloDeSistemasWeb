@@ -16,10 +16,12 @@ function App() {
           <img src={heroImg} className="base" width="170" height="179" alt="" />
           <img src={reactLogo} className="framework" alt="React logo" />
         </div>
-        <div>
-          <h1>Single Page Aplication de Futbol</h1>
-          <p className="quehacer">Selecciona lo que quieres hacer.</p>
-        </div>
+        {vista !== "agregar" && (
+          <div>
+            <h1>Single Page Aplication de Futbol</h1>
+            <p className="quehacer">Selecciona lo que quieres hacer.</p>
+          </div>
+        )}
       </section>
 
       <div className="ticks"></div>
