@@ -48,7 +48,7 @@ function App() {
           <h2>Buscar equipo</h2>
           <Buscador setData={setData} />
 
-          <button onClick={() => setVista("menu")}>Volver</button>
+          <button onClick={() => {setVista("menu"); setData(null);}}>Volver</button>
         </section>
       )}
 
@@ -58,7 +58,7 @@ function App() {
           <h2>Cargar nuevo equipo</h2>
           <Formulario setData={setData} />
 
-          <button onClick={() => setVista("menu")}>Volver</button>
+          <button onClick={() => {setVista("menu"); setData(null);}}>Volver</button>
         </section>
       )}
 
