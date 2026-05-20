@@ -3,12 +3,16 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
+import Navbar from './Components/Navbar';
+import { BrowserRouter } from 'react-router-dom';
+import Formulario from './Components/Formulario';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
+      <Navbar />
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
@@ -115,6 +119,8 @@ function App() {
 
       <div className="ticks"></div>
       <section id="spacer"></section>
+
+
     </>
   )
 }

@@ -6,6 +6,7 @@
 // - Redirigir a:
 //   - Inicio (/)
 //   - Listado (/listado)
+//   - Detalle (/detalle/:id) 
 //
 // Debe ser visible en toda la aplicación (se renderiza en App.jsx).
 
@@ -20,7 +21,10 @@ function Navbar() {
             <ul>
                 <li><Link to="/">Inicio</Link></li>
                 <li><Link to="/listado">Listado</Link></li>
+                <li><Link to="/detalle/:id">Detalle</Link></li>
             </ul>
         </nav>
     );
 }
+
+export default Navbar;
