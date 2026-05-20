@@ -8,3 +8,19 @@
 //   - Listado (/listado)
 //
 // Debe ser visible en toda la aplicación (se renderiza en App.jsx).
+
+import { Link } from 'react-router-dom';
+
+function Navbar() {
+
+
+
+    return (
+        <nav>
+            <ul>
+                <li><Link to="/">Inicio</Link></li>
+                <li><Link to="/listado">Listado</Link></li>
+            </ul>
+        </nav>
+    );
+}
