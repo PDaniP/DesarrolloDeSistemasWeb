@@ -11,158 +11,168 @@
 //
 // Este componente representa la creación (CREATE del CRUD).
 
-import { useState } from 'react';
-import axios from 'axios';
+import { useState } from "react";
+import { createItem } from "../services/api";
 
+function Formulario() {
+  const [formularioDatos, setFormularioDatos] = useState({
+    nombre: "",
+    pais: "",
+    liga: "",
+    fundacion: "",
+    cantidadDeTitulosNacionales: "",
+    cantidadDeTitulosInternacionales: "",
+    capacidadEstadio: "",
+    color1: "",
+    color2: "",
+  });
 
-function Formulario({ setData }) {
-    const [formularioDatos, setFormularioDatos] = useState({
-        nombre: '',
-        pais: '',
-        liga: '',
-        fundacion: '',
-        cantidadTitulosNacionales: '',
-        cantidadTitulosInternacionales: '',
-        capacidadEstadio: '',
-        color1: '',
-        color2: '',
+  const [mensaje, setMensaje] = useState("");
+
+  // HANDLE CHANGE
+  const handleChange = (e) => {
+    setFormularioDatos({
+      ...formularioDatos,
+      [e.target.name]: e.target.value,
     });
+  };
 
-    const handleChange = (e) => {
-        setFormularioDatos({
-            ...formularioDatos,
-            [e.target.name]: e.target.value
-        });
-    };
+  // SUBMIT (POST)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    try {
+      await createItem({
+        nombre: formularioDatos.nombre,
+        pais: formularioDatos.pais,
+        liga: formularioDatos.liga,
+        fundacion: parseInt(formularioDatos.fundacion),
+        cantidadDeTitulosNacionales: parseInt(
+          formularioDatos.cantidadDeTitulosNacionales
+        ),
+        cantidadDeTitulosInternacionales: parseInt(
+          formularioDatos.cantidadDeTitulosInternacionales
+        ),
+        capacidadEstadio: parseInt(formularioDatos.capacidadEstadio),
+        coloresCamiseta: {
+          color1: formularioDatos.color1,
+          color2: formularioDatos.color2,
+        },
+      });
 
-        try {
-            const res = await axios.post('http://localhost:3000/equipos/crear', {
-                nombre: formularioDatos.nombre,
-                pais: formularioDatos.pais,
-                liga: formularioDatos.liga,
-                fundacion: parseInt(formularioDatos.fundacion),
-                cantidadDeTitulosNacionales: parseInt(formularioDatos.cantidadTitulosNacionales),
-                cantidadDeTitulosInternacionales: parseInt(formularioDatos.cantidadTitulosInternacionales),
-                capacidadDelEstadio: parseInt(formularioDatos.capacidadEstadio),
-                coloresCamiseta: {
-                    color1: formularioDatos.color1,
-                    color2: formularioDatos.color2
-                }
-            });
+      // mensaje éxito
+      setMensaje("Equipo creado correctamente");
 
-            const nuevoId = res.data.id;
+      // limpiar formulario
+      setFormularioDatos({
+        nombre: "",
+        pais: "",
+        liga: "",
+        fundacion: "",
+        cantidadDeTitulosNacionales: "",
+        cantidadDeTitulosInternacionales: "",
+        capacidadEstadio: "",
+        color1: "",
+        color2: "",
+      });
+    } catch (error) {
+      console.error(error);
+      setMensaje("Error al crear el equipo");
+    }
+  };
 
-            const resultado = await axios.get(`http://localhost:3000/equipos/idEquipo/${nuevoId}`);
+  return (
+    <div>
+      <h2>Alta de Equipo</h2>
 
-            setData(resultado.data);
+      {mensaje && <p>{mensaje}</p>}
 
-            // Limpiar el formulario después de un envío exitoso
-            setFormularioDatos({
-                nombre: '',
-                pais: '',
-                liga: '',
-                fundacion: '',
-                cantidadTitulosNacionales: '',
-                cantidadTitulosInternacionales: '',
-                capacidadEstadio: '',
-                color1: '',
-                color2: '',
-            });
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="nombre"
+          placeholder="Nombre"
+          value={formularioDatos.nombre}
+          onChange={handleChange}
+          required
+        />
 
-        } catch (error) {
-            console.log(error);
-        }
-    };
+        <input
+          type="text"
+          name="pais"
+          placeholder="País"
+          value={formularioDatos.pais}
+          onChange={handleChange}
+          required
+        />
 
-    return (
-        <form onSubmit={handleSubmit} className="form-vertical">
-            <input
-                type="text"
-                name="nombre"
-                placeholder="Nombre"
-                value={formularioDatos.nombre}
-                onChange={handleChange}
-                required
-            />
+        <input
+          type="text"
+          name="liga"
+          placeholder="Liga"
+          value={formularioDatos.liga}
+          onChange={handleChange}
+          required
+        />
 
-            <input
-                type="text"
-                name="pais"
-                placeholder="País"
-                value={formularioDatos.pais}
-                onChange={handleChange}
-                required
-            />
+        <input
+          type="number"
+          name="fundacion"
+          placeholder="Año de Fundación"
+          value={formularioDatos.fundacion}
+          onChange={handleChange}
+          required
+        />
 
-            <input
-                type="text"
-                name="liga"
-                placeholder="Liga"
-                value={formularioDatos.liga}
-                onChange={handleChange}
-                required
-            />
+        <input
+          type="number"
+          name="cantidadDeTitulosNacionales"
+          placeholder="Títulos Nacionales"
+          value={formularioDatos.cantidadDeTitulosNacionales}
+          onChange={handleChange}
+          required
+        />
 
-            <input
-                type="number"
-                name="fundacion"
-                placeholder="Año de Fundación"
-                value={formularioDatos.fundacion}
-                onChange={handleChange}
-                required
-            />
+        <input
+          type="number"
+          name="cantidadDeTitulosInternacionales"
+          placeholder="Títulos Internacionales"
+          value={formularioDatos.cantidadDeTitulosInternacionales}
+          onChange={handleChange}
+          required
+        />
 
-            <input
-                type="number"
-                name="cantidadDeTitulosNacionales"
-                placeholder="Títulos Nacionales"
-                value={formularioDatos.cantidadDeTitulosNacionales}
-                onChange={handleChange}
-                required
-            />
+        <input
+          type="number"
+          name="capacidadEstadio"
+          placeholder="Capacidad del Estadio"
+          value={formularioDatos.capacidadEstadio}
+          onChange={handleChange}
+          required
+        />
 
-            <input
-                type="number"
-                name="cantidadDeTitulosInternacionales"
-                placeholder="Títulos Internacionales"
-                value={formularioDatos.cantidadDeTitulosInternacionales}
-                onChange={handleChange}
-                required
-            />
+        <input
+          type="text"
+          name="color1"
+          placeholder="Color 1"
+          value={formularioDatos.color1}
+          onChange={handleChange}
+          required
+        />
 
-            <input
-                type="number"
-                name="capacidadEstadio"
-                placeholder="Capacidad del Estadio"
-                value={formularioDatos.capacidadEstadio}
-                onChange={handleChange}
-                required
-            />
+        <input
+          type="text"
+          name="color2"
+          placeholder="Color 2"
+          value={formularioDatos.color2}
+          onChange={handleChange}
+          required
+        />
 
-            <input
-                type="text"
-                name="color1"
-                placeholder="Color 1 de la Camiseta"
-                value={formularioDatos.color1}
-                onChange={handleChange}
-                required
-            />
-
-            <input
-                type="text"
-                name="color2"
-                placeholder="Color 2 de la Camiseta"
-                value={formularioDatos.color2}
-                onChange={handleChange}
-                required
-            />
-
-            <button type="submit">Guardar</button>
-        </form>
-    );
+        <button type="submit">Guardar</button>
+      </form>
+    </div>
+  );
 }
 
 export default Formulario;
