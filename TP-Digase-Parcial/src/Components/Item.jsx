@@ -17,7 +17,7 @@ function Item({ equipo, onDelete }) {
       <p><strong>Liga:</strong> {equipo.liga}</p>
 
       <div style={styles.colores}>
-        <span>🎽 Colores:</span>
+        <span>Colores:</span>
         <div
           style={{
             ...styles.colorBox,
