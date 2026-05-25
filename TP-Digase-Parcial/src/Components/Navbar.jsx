@@ -10,21 +10,47 @@
 //
 // Debe ser visible en toda la aplicación (se renderiza en App.jsx).
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function Navbar() {
+  return (
+    <nav style={styles.nav}>
+      <h2 style={styles.logo}>⚽ Equipos</h2>
 
+      <div style={styles.links}>
+        <Link to="/" style={styles.link}>
+          Inicio
+        </Link>
 
-
-    return (
-        <nav>
-            <ul>
-                <li><Link to="/">Inicio</Link></li>
-                <li><Link to="/listado">Listado</Link></li>
-                <li><Link to="/detalle/:id">Detalle</Link></li>
-            </ul>
-        </nav>
-    );
+        <Link to="/crear" style={styles.link}>
+          Crear Equipo
+        </Link>
+      </div>
+    </nav>
+  );
 }
+
+const styles = {
+  nav: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "10px 20px",
+    backgroundColor: "#222",
+  },
+  logo: {
+    color: "#fff",
+    margin: 0,
+  },
+  links: {
+    display: "flex",
+    gap: "15px",
+  },
+  link: {
+    color: "#fff",
+    textDecoration: "none",
+    fontWeight: "bold",
+  },
+};
 
 export default Navbar;
