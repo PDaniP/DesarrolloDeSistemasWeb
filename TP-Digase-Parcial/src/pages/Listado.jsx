@@ -5,14 +5,13 @@
 // - Ejecutar un GET al cargar el componente (useEffect).
 // - Obtener todos los registros desde la API.
 // - Guardar los datos en un estado.
-// - Pasar la lista al componente Lista.
+// - Pasar la lista al componente Item.
 //
 // Debe mostrar solo información básica (ej: nombre).
 
-
 import { useEffect, useState } from "react";
-import { getItems } from "../services/api";
-import { Link } from "react-router-dom";
+import { getItems, deleteItem } from "../services/api";
+import Item from "../components/Item";
 
 const Listado = () => {
   const [items, setItems] = useState([]);
@@ -20,22 +19,32 @@ const Listado = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const res = await getItems();
-        setItems(res.data);
-      } catch (err) {
-        console.error(err);
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchItems();
   }, []);
 
-  //Render condicional
+  const fetchItems = async () => {
+    try {
+      const res = await getItems();
+      setItems(res.data);
+    } catch (err) {
+      console.error(err);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  //eliminar
+  const handleDelete = async (id) => {
+    try {
+      await deleteItem(id);
+      fetchItems(); // refresca lista
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //render condicional
   if (loading) return <p>Cargando datos...</p>;
   if (error) return <p>Error al conectar con la API</p>;
 
@@ -47,17 +56,12 @@ const Listado = () => {
         <p>No hay equipos cargados</p>
       ) : (
         <ul>
-          {items.map((item) => (
-            <li key={item.id}>
-              {/*SOLO UN ATRIBUTO (consigna)*/}
-              {item.nombre}
-
-              {" - "}
-
-              <Link to={`/detalle/${item.id}`}>
-                Ver más
-              </Link>
-            </li>
+          {items.map((equipo) => (
+            <Item
+              key={equipo.id}
+              equipo={equipo}
+              onDelete={handleDelete}
+            />
           ))}
         </ul>
       )}
