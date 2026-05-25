@@ -44,11 +44,11 @@ export const createItem = async (data) => {
 };
 
 //PUT - actualizar elemento
-export const updateTitNac = async (id, data) => {
+export const updateTitulosNacionales = async (id, data) => {
   return await api.put(`/titulos/nacionales/${id}`, data);
 };
 
-export const updateTitInt = async (id, data) => {
+export const updateTitulosInternacionales = async (id, data) => {
   return await api.put(`/titulos/internacionales/${id}`, data);
 };
 

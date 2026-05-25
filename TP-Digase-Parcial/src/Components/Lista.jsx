@@ -7,62 +7,27 @@
 //
 // No contiene lógica de negocio, solo renderiza la lista.
 
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getItems, deleteItem } from "../api/api";
 
-function Listado() {
-  const [equipos, setEquipos] = useState([]);
-
-  //trae datos al cargar
-  useEffect(() => {
-    cargarEquipos();
-  }, []);
-
-  const cargarEquipos = async () => {
-    try {
-      const res = await getItems();
-      setEquipos(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  //eliminar equipo
-  const handleDelete = async (id) => {
-    try {
-      await deleteItem(id);
-      cargarEquipos(); // refresca lista
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+function Lista({ equipos, onDelete }) {
   return (
     <div>
-      <h1>Listado de Equipos</h1>
+      {equipos.map((equipo) => (
+        <div key={equipo.id} style={styles.card}>
+          {/* SOLO 1 ATRIBUTO (según enunciado o profe) */}
+          <h3>{equipo.nombre}</h3>
 
-      {equipos.length === 0 ? (
-        <p>No hay equipos cargados</p>
-      ) : (
-        equipos.map((equipo) => (
-          <div key={equipo.id} style={styles.card}>
-            <h3>{equipo.nombre}</h3>
-            <p>{equipo.pais}</p>
-            <p>{equipo.liga}</p>
+          <div style={styles.botones}>
+            <Link to={`/detalle/${equipo.id}`}>
+              <button>Ver más</button>
+            </Link>
 
-            <div style={styles.botones}>
-              <Link to={`/detalle/${equipo.id}`}>
-                <button>Ver Detalle</button>
-              </Link>
-
-              <button onClick={() => handleDelete(equipo.id)}>
-                Eliminar
-              </button>
-            </div>
+            <button onClick={() => onDelete(equipo.id)}>
+              Eliminar
+            </button>
           </div>
-        ))
-      )}
+        </div>
+      ))}
     </div>
   );
 }
@@ -81,4 +46,4 @@ const styles = {
   },
 };
 
-export default Listado;
+export default Lista;

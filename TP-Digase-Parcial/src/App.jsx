@@ -1,20 +1,23 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Listado from "./pages/Listado";
-import Formulario from "./pages/Formulario";
+import Formulario from "./components/Formulario";
 import Detalle from "./pages/Detalle";
+import Home from "./pages/Home";
+import './App.css';
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<Listado />} />
-        <Route path="/crear" element={<Formulario />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/listado" element={<Listado />} />
+        <Route path="/listado/:pais" element={<Listado />} />
         <Route path="/detalle/:id" element={<Detalle />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 

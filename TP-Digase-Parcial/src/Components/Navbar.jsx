@@ -15,14 +15,14 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <nav style={styles.nav}>
-      <h2 style={styles.logo}>⚽ Equipos</h2>
+      <h2 style={styles.logo}>Equipos</h2>
 
       <div style={styles.links}>
         <Link to="/" style={styles.link}>
           Inicio
         </Link>
 
-        <Link to="/crear" style={styles.link}>
+        <Link to="/listado" style={styles.link}>
           Crear Equipo
         </Link>
       </div>

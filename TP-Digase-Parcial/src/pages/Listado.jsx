@@ -10,13 +10,16 @@
 // Debe mostrar solo información básica (ej: nombre).
 
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { getItems, deleteItem } from "../services/api";
-import Item from "../components/Item";
+import Lista from "../components/Lista";
 
 const Listado = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+
+  const { pais } = useParams(); // 👈 clave para el filtro
 
   useEffect(() => {
     fetchItems();
@@ -34,7 +37,7 @@ const Listado = () => {
     }
   };
 
-  //eliminar
+  // eliminar
   const handleDelete = async (id) => {
     try {
       await deleteItem(id);
@@ -44,26 +47,32 @@ const Listado = () => {
     }
   };
 
-  //render condicional
+  // 🔎 filtro por país (si existe en la URL)
+  const equiposFiltrados = pais
+    ? items.filter(
+        (e) => e.pais.toLowerCase() === pais.toLowerCase()
+      )
+    : items;
+
+  // render condicional
   if (loading) return <p>Cargando datos...</p>;
   if (error) return <p>Error al conectar con la API</p>;
 
   return (
-    <div>
-      <h1>Listado de Equipos</h1>
+    <div className="container">
+      <h1>
+        {pais
+          ? `Equipos de ${pais}`
+          : "Listado de Equipos"}
+      </h1>
 
-      {items.length === 0 ? (
+      {equiposFiltrados.length === 0 ? (
         <p>No hay equipos cargados</p>
       ) : (
-        <ul>
-          {items.map((equipo) => (
-            <Item
-              key={equipo.id}
-              equipo={equipo}
-              onDelete={handleDelete}
-            />
-          ))}
-        </ul>
+        <Lista
+          equipos={equiposFiltrados}
+          onDelete={handleDelete}
+        />
       )}
     </div>
   );
