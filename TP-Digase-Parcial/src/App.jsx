@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Listado from "./pages/Listado";
-import Formulario from "./components/Formulario";
 import Detalle from "./pages/Detalle";
 import Home from "./pages/Home";
 import './App.css';

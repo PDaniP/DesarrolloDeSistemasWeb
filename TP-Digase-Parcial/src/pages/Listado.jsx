@@ -21,10 +21,6 @@ const Listado = () => {
 
   const { pais } = useParams(); // 👈 clave para el filtro
 
-  useEffect(() => {
-    fetchItems();
-  }, []);
-
   const fetchItems = async () => {
     try {
       const res = await getItems();
@@ -36,6 +32,14 @@ const Listado = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    const loadItems = async () => {
+      await fetchItems();
+    };
+
+    loadItems();
+  }, []);
 
   // eliminar
   const handleDelete = async (id) => {
