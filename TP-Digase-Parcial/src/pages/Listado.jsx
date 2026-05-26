@@ -19,7 +19,7 @@ const Listado = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const { pais } = useParams(); // 👈 clave para el filtro
+  const { pais } = useParams(); //clave para el filtro
 
   const fetchItems = async () => {
     try {
@@ -60,7 +60,7 @@ const Listado = () => {
 
   return (
     <div className="container">
-      <h1>
+      <h1 style={{ marginBottom: "30px" }}>
         {pais
           ? `Equipos de ${pais}`
           : "Listado de Equipos"}

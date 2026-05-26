@@ -8,19 +8,17 @@
 // No contiene lógica de negocio, solo renderiza la lista.
 
 import { Link } from "react-router-dom";
+import Item from "./Item";
 
 function Lista({ equipos, onDelete }) {
   return (
     <div>
       {equipos.map((equipo) => (
-        <div key={equipo.id} style={styles.card}>
-          <div style={styles.header}>
-            <h3>{equipo.nombre}</h3>
-            <Link to={`/detalle/${equipo.id}`}>
-              <button>Ver más</button>
-            </Link>
-          </div>
-        </div>
+        <Item 
+          key={equipo.id} 
+          equipo={equipo} 
+          onDelete={onDelete} 
+        />
       ))}
     </div>
   );

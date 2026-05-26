@@ -28,6 +28,7 @@ import {
   updateTitulosInternacionales,
   updateCapacidad,
 } from "../services/api";
+import DetalleCard from "../components/DetalleCard";
 
 const Detalle = () => {
   const { id } = useParams();
@@ -132,38 +133,16 @@ const Detalle = () => {
   if (error) return <p>Error al cargar el equipo</p>;
 
   return (
-    <div>
-      <h1>Detalle del Equipo</h1>
+    <div style={styles.container}>
+      <h1 style={{ marginBottom: "35px" }}>Detalle del Equipo</h1>
 
       {!editando ? (
         <>
-          <p><strong>Nombre:</strong> {equipo.nombre}</p>
-          <p><strong>País:</strong> {equipo.pais}</p>
-          <p><strong>Liga:</strong> {equipo.liga}</p>
-          <p><strong>Fundación:</strong> {equipo.fundacion}</p>
-          <p>
-            <strong>Títulos Nacionales:</strong>{" "}
-            {equipo.cantidadDeTitulosNacionales}
-          </p>
-          <p>
-            <strong>Títulos Internacionales:</strong>{" "}
-            {equipo.cantidadDeTitulosInternacionales}
-          </p>
-          <p>
-            <strong>Capacidad Estadio:</strong>{" "}
-            {equipo.capacidadEstadio}
-          </p>
-          <p>
-            <strong>Colores:</strong>{" "}
-            {equipo.coloresCamiseta.color1} y{" "}
-            {equipo.coloresCamiseta.color2}
-          </p>
-
+          <DetalleCard equipo={equipo} />
           <div style={{ marginTop: '20px' }}>
             <button onClick={() => setEditando(true)} style={{ marginRight: '10px' }}>
               Editar
             </button>
-
             <button onClick={handleDelete}>
               Eliminar
             </button>
@@ -205,6 +184,17 @@ const Detalle = () => {
       )}
     </div>
   );
+};
+
+const styles = {
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    minHeight: "100vh",
+    padding: "40px 20px",
+    boxSizing: "border-box",
+  },
 };
 
 export default Detalle;

@@ -33,21 +33,12 @@ function DetalleCard({ equipo }) {
         {equipo.capacidadEstadio}
       </p>
 
-      <div style={styles.colores}>
-        <strong>Colores de la camiseta:</strong>
-        <div
-          style={{
-            ...styles.colorBox,
-            backgroundColor: equipo.coloresCamiseta?.color1,
-          }}
-        />
-        <div
-          style={{
-            ...styles.colorBox,
-            backgroundColor: equipo.coloresCamiseta?.color2,
-          }}
-        />
-      </div>
+      <p>
+            <strong>Colores de la camiseta:</strong>{" "}
+            {equipo.coloresCamiseta.color1} y{" "}
+            {equipo.coloresCamiseta.color2}
+          </p>
+
     </div>
   );
 }
@@ -58,6 +49,7 @@ const styles = {
     padding: "20px",
     borderRadius: "10px",
     maxWidth: "400px",
+    
   },
   colores: {
     display: "flex",
