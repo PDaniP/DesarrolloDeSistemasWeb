@@ -134,7 +134,9 @@ const Detalle = () => {
 
   return (
     <div style={styles.container}>
-      <h1 style={{ marginBottom: "35px" }}>Detalle del Equipo</h1>
+      {!editando && (
+        <h1 style={{ marginBottom: "35px" }}>Detalle del Equipo</h1>
+      )}
 
       {!editando ? (
         <>
@@ -149,37 +151,48 @@ const Detalle = () => {
           </div>
         </>
       ) : (
-        <form onSubmit={handleSubmit}>
-          <h2>Editar Equipo</h2>
+        <form onSubmit={handleSubmit} style={styles.form}>
+          <h2 style={styles.formTitle}>Editar Equipo</h2>
 
-          <label>Títulos Nacionales:</label>
-          <input
-            type="number"
-            name="cantidadDeTitulosNacionales"
-            value={formData.cantidadDeTitulosNacionales}
-            onChange={handleChange}
-          />
+          <div style={styles.formRow}>
+            <label style={styles.label}>Títulos Nacionales:</label>
+            <input
+              style={styles.input}
+              type="number"
+              name="cantidadDeTitulosNacionales"
+              value={formData.cantidadDeTitulosNacionales}
+              onChange={handleChange}
+            />
+          </div>
 
-          <label>Títulos Internacionales:</label>
-          <input
-            type="number"
-            name="cantidadDeTitulosInternacionales"
-            value={formData.cantidadDeTitulosInternacionales}
-            onChange={handleChange}
-          />
+          <div style={styles.formRow}>
+            <label style={styles.label}>Títulos Internacionales:</label>
+            <input
+              style={styles.input}
+              type="number"
+              name="cantidadDeTitulosInternacionales"
+              value={formData.cantidadDeTitulosInternacionales}
+              onChange={handleChange}
+            />
+          </div>
 
-          <label>Capacidad Estadio:</label>
-          <input
-            type="number"
-            name="capacidadEstadio"
-            value={formData.capacidadEstadio}
-            onChange={handleChange}
-          />
+          <div style={styles.formRow}>
+            <label style={styles.label}>Capacidad Estadio:</label>
+            <input
+              style={styles.input}
+              type="number"
+              name="capacidadEstadio"
+              value={formData.capacidadEstadio}
+              onChange={handleChange}
+            />
+          </div>
 
-          <button type="submit">Guardar</button>
-          <button type="button" onClick={() => setEditando(false)}>
-            Cancelar
-          </button>
+          <div style={styles.buttonRow}>
+            <button type="submit">Guardar</button>
+            <button type="button" onClick={() => setEditando(false)}>
+              Cancelar
+            </button>
+          </div>
         </form>
       )}
     </div>
@@ -194,6 +207,43 @@ const styles = {
     minHeight: "100vh",
     padding: "40px 20px",
     boxSizing: "border-box",
+  },
+  form: {
+    width: "100%",
+    maxWidth: "520px",
+    display: "flex",
+    flexDirection: "column",
+    gap: "20px",
+    padding: "24px",
+    borderRadius: "10px",
+    border: "1px solid #ddd",
+    backgroundColor: "rgba(30, 41, 59, 0.05",
+  },
+  formTitle: {
+    margin: 0,
+    marginBottom: "12px",
+  },
+  formRow: {
+    display: "flex",
+    alignItems: "center",
+    gap: "16px",
+    justifyContent: "space-between",
+  },
+  label: {
+    flex: "0 0 45%",
+    margin: 0,
+    fontWeight: "600",
+  },
+  input: {
+    flex: "1",
+    padding: "8px 10px",
+    border: "1px solid #ccc",
+    borderRadius: "6px",
+  },
+  buttonRow: {
+    display: "flex",
+    justifyContent: "center",
+    gap: "12px",
   },
 };
 
