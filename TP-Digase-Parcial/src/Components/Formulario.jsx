@@ -61,7 +61,7 @@ function Formulario() {
       });
 
       // mensaje éxito
-      setMensaje("Equipo creado correctamente");
+      alert("Equipo creado correctamente");
 
       // limpiar formulario
       setFormularioDatos({
@@ -83,7 +83,6 @@ function Formulario() {
 
   return (
     <div>
-      <h2>Alta de Equipo</h2>
 
       {mensaje && <p>{mensaje}</p>}
 

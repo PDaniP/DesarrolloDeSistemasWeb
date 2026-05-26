@@ -14,17 +14,11 @@ function Lista({ equipos, onDelete }) {
     <div>
       {equipos.map((equipo) => (
         <div key={equipo.id} style={styles.card}>
-          {/* SOLO 1 ATRIBUTO (según enunciado o profe) */}
-          <h3>{equipo.nombre}</h3>
-
-          <div style={styles.botones}>
+          <div style={styles.header}>
+            <h3>{equipo.nombre}</h3>
             <Link to={`/detalle/${equipo.id}`}>
               <button>Ver más</button>
             </Link>
-
-            <button onClick={() => onDelete(equipo.id)}>
-              Eliminar
-            </button>
           </div>
         </div>
       ))}
@@ -38,6 +32,11 @@ const styles = {
     padding: "10px",
     marginBottom: "10px",
     borderRadius: "8px",
+  },
+  header: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   botones: {
     display: "flex",

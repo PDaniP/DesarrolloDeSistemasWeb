@@ -103,19 +103,17 @@ const Detalle = () => {
     e.preventDefault();
 
     try {
-      await updateTitulosNacionales(id, {
-        cantidadDeTitulosNacionales:
-          formData.cantidadDeTitulosNacionales,
-      });
+      await updateTitulosNacionales(
+        id,
+        parseInt(formData.cantidadDeTitulosNacionales, 10)
+      );
 
-      await updateTitulosInternacionales(id, {
-        cantidadDeTitulosInternacionales:
-          formData.cantidadDeTitulosInternacionales,
-      });
+      await updateTitulosInternacionales(
+        id,
+        parseInt(formData.cantidadDeTitulosInternacionales, 10)
+      );
 
-      await updateCapacidad(id, {
-        capacidadEstadio: formData.capacidadEstadio,
-      });
+      await updateCapacidad(id, parseInt(formData.capacidadEstadio, 10));
 
       alert("Equipo actualizado correctamente");
       setEditando(false);
@@ -161,13 +159,15 @@ const Detalle = () => {
             {equipo.coloresCamiseta.color2}
           </p>
 
-          <button onClick={() => setEditando(true)}>
-            Editar
-          </button>
+          <div style={{ marginTop: '20px' }}>
+            <button onClick={() => setEditando(true)} style={{ marginRight: '10px' }}>
+              Editar
+            </button>
 
-          <button onClick={handleDelete}>
-            Eliminar
-          </button>
+            <button onClick={handleDelete}>
+              Eliminar
+            </button>
+          </div>
         </>
       ) : (
         <form onSubmit={handleSubmit}>

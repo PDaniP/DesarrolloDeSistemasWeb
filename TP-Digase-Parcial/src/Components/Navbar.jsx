@@ -23,7 +23,7 @@ function Navbar() {
         </Link>
 
         <Link to="/listado" style={styles.link}>
-          Crear Equipo
+          Listado
         </Link>
       </div>
     </nav>

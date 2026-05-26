@@ -43,17 +43,17 @@ export const createItem = async (data) => {
   return await api.post("/crear", data);
 };
 
-//PUT - actualizar elemento
-export const updateTitulosNacionales = async (id, data) => {
-  return await api.put(`/titulos/nacionales/${id}`, data);
+//PATCH - actualizar elemento
+export const updateTitulosNacionales = async (id, titulos) => {
+  return await api.patch(`/titulos/nacionales/${id}`, { titulos });
 };
 
-export const updateTitulosInternacionales = async (id, data) => {
-  return await api.put(`/titulos/internacionales/${id}`, data);
+export const updateTitulosInternacionales = async (id, titulos) => {
+  return await api.patch(`/titulos/internacionales/${id}`, { titulos });
 };
 
-export const updateCapacidad = async (id, data) => {
-  return await api.put(`/capacidad/${id}`, data);
+export const updateCapacidad = async (id, capacidad) => {
+  return await api.patch(`/capacidad/${id}`, { capacidad });
 };
 
 //DELETE - eliminar elemento

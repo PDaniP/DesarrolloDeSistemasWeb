@@ -14,7 +14,7 @@ function Home() {
 
     return (
         <div>
-            <h1>Alta de Datos</h1>
+            <h1>Alta de Equipo</h1>
             <Formulario />
         </div>
     );

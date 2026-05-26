@@ -34,11 +34,7 @@ const Listado = () => {
   };
 
   useEffect(() => {
-    const loadItems = async () => {
-      await fetchItems();
-    };
-
-    loadItems();
+    fetchItems();
   }, []);
 
   // eliminar
