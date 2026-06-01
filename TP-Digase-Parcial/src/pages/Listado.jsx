@@ -1,14 +1,3 @@
-// Página de listado (ruta "/listado").
-// Representa la vista maestra.
-//
-// Responsabilidades:
-// - Ejecutar un GET al cargar el componente (useEffect).
-// - Obtener todos los registros desde la API.
-// - Guardar los datos en un estado.
-// - Pasar la lista al componente Item.
-//
-// Debe mostrar solo información básica (ej: nombre).
-
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getItems, deleteItem } from "../services/api";
@@ -19,7 +8,7 @@ const Listado = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const { pais } = useParams(); //clave para el filtro
+  const { pais } = useParams();
 
   const fetchItems = async () => {
     try {
@@ -41,20 +30,20 @@ const Listado = () => {
   const handleDelete = async (id) => {
     try {
       await deleteItem(id);
-      fetchItems(); // refresca lista
+      fetchItems();
     } catch (error) {
       console.log(error);
     }
   };
 
-  // 🔎 filtro por país (si existe en la URL)
+  //filtro por país (si existe en la URL)
   const equiposFiltrados = pais
     ? items.filter(
         (e) => e.pais.toLowerCase() === pais.toLowerCase()
       )
     : items;
 
-  // render condicional
+  //render condicional
   if (loading) return <p>Cargando datos...</p>;
   if (error) return <p>Error al conectar con la API</p>;
 
