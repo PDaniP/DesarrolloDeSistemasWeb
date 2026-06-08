@@ -61,6 +61,8 @@ const styles = {
   },
   links: {
     display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     gap: "15px",
   },
   link: {
@@ -71,7 +73,7 @@ const styles = {
   favoriteButton: {
     color: "#222",
     backgroundColor: "#facc15",
-    padding: "8px 14px",
+    padding: "8px 12px",
     borderRadius: "8px",
     textDecoration: "none",
     fontWeight: "700",
