@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   getItemById,
@@ -8,8 +8,10 @@ import {
   updateCapacidad,
 } from "../services/api";
 import DetalleCard from "../components/DetalleCard";
+import { FavoritosContext } from "../context/FavoritosContext";
 
 const Detalle = () => {
+  const { favoritos, agregarFavoritos, quitarFavoritos } = useContext(FavoritosContext);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -107,6 +109,20 @@ const Detalle = () => {
     }
   };
 
+  const esFavorito = equipo
+    ? favoritos.some((fav) => fav.id === equipo.id)
+    : false;
+
+  const handleToggleFavorito = () => {
+    if (!equipo) return;
+
+    if (esFavorito) {
+      quitarFavoritos(equipo.id);
+    } else {
+      agregarFavoritos(equipo);
+    }
+  };
+
   // RENDER
   if (loading) return <p>Cargando datos...</p>;
   if (error) return <p>Error al cargar el equipo</p>;
@@ -121,6 +137,21 @@ const Detalle = () => {
         <>
           <DetalleCard equipo={equipo} />
           <div style={{ marginTop: '20px' }}>
+            <button
+              onClick={handleToggleFavorito}
+              style={{
+                marginRight: '10px',
+                backgroundColor: esFavorito ? '#dc2626' : '#fbbf24',
+                color: '#000',
+                border: 'none',
+                padding: '10px 16px',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                fontWeight: '700',
+              }}
+            >
+              {esFavorito ? 'Quitar de Favoritos' : 'Agregar a Favoritos'}
+            </button>
             <button onClick={() => setEditando(true)} style={{ marginRight: '10px' }}>
               Editar
             </button>

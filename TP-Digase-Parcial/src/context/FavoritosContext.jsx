@@ -5,8 +5,8 @@ export const FavoritosContext = createContext();
 export function FavoritosProvider({ children }) {
   const [favoritos, setFavoritos] = useState([]);
 
-  const agregarFavoritos = (item) => {
-    setFavoritos([...favoritos, item]);
+  const agregarFavoritos = (elemento) => {
+    setFavoritos([...favoritos, elemento]);
   };
 
   const quitarFavoritos = (id) => {

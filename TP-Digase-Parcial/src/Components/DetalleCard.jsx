@@ -1,3 +1,5 @@
+
+
 function DetalleCard({ equipo }) {
   if (!equipo) return <p>No hay datos del equipo</p>;
 
