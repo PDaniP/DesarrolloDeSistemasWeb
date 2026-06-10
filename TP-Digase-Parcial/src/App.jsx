@@ -12,11 +12,14 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/listado" element={<Listado />} />
-        <Route path="/listado/:pais" element={<Listado />} />
-        <Route path="/detalle/:id" element={<Detalle />} />
-        <Route path="/mis-favoritos" element={<MiLista />} />
+        <Route path="/login" element={<Login />} />
+        <Route element={<RutaPrivada />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/listado" element={<Listado />} />
+          <Route path="/listado/:pais" element={<Listado />} />
+          <Route path="/detalle/:id" element={<Detalle />} />
+          <Route path="/mis-favoritos" element={<MiLista />} />
+        </Route>
       </Routes>
     </>
   );

@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { FavoritosContext } from "../context/FavoritosContext";
+import { AuthContext } from "../context/AuthContext";
 
 function Navbar() {
   const { favoritos } = useContext(FavoritosContext);
+  const { usuario } = useContext(AuthContext);
 
   return (
     <nav style={styles.nav}>
@@ -26,6 +28,11 @@ function Navbar() {
         <Link to="/mis-favoritos" style={styles.favoriteButton}>
           Mis Favoritos
         </Link>
+
+        
+
+        
+
       </div>
     </nav>
   );
