@@ -1,39 +1,48 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { FavoritosContext } from "../context/FavoritosContext";
 import { AuthContext } from "../context/AuthContext";
 
 function Navbar() {
+  const navigate = useNavigate();
   const { favoritos } = useContext(FavoritosContext);
-  const { usuario } = useContext(AuthContext);
+  const { usuario, logout } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   return (
     <nav style={styles.nav}>
       <div style={styles.leftGroup}>
         <h2 style={styles.logo}>Equipos</h2>
-        <div style={styles.countBadge}>
-          Guardados: {favoritos.length}
+        {usuario && (
+          <div style={styles.countBadge}>
+            Guardados: {favoritos.length}
+          </div>
+        )}
+      </div>
+
+      {usuario && (
+        <div style={styles.links}>
+          <Link to="/" style={styles.link}>
+            Inicio
+          </Link>
+
+          <Link to="/listado" style={styles.link}>
+            Listado
+          </Link>
+
+          <Link to="/mis-favoritos" style={styles.favoriteButton}>
+            Mis Favoritos
+          </Link>
+
+          <button type="button" style={styles.logoutButton} onClick={handleLogout}>
+            Cerrar Sesión
+          </button>
         </div>
-      </div>
-
-      <div style={styles.links}>
-        <Link to="/" style={styles.link}>
-          Inicio
-        </Link>
-
-        <Link to="/listado" style={styles.link}>
-          Listado
-        </Link>
-
-        <Link to="/mis-favoritos" style={styles.favoriteButton}>
-          Mis Favoritos
-        </Link>
-
-        
-
-        
-
-      </div>
+      )}
     </nav>
   );
 }
@@ -83,6 +92,15 @@ const styles = {
     padding: "8px 12px",
     borderRadius: "8px",
     textDecoration: "none",
+    fontWeight: "700",
+  },
+  logoutButton: {
+    color: "#fff",
+    backgroundColor: "#ef4444",
+    padding: "8px 12px",
+    borderRadius: "8px",
+    border: "none",
+    cursor: "pointer",
     fontWeight: "700",
   },
 };

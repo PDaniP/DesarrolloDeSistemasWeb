@@ -1,19 +1,18 @@
-import useNavigate from "react-router-dom";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { useContext } from "react";
 
 function Login() {
+    const [usuario, setUsuario] = useState("");
+    const [password, setPassword] = useState("");
     const navigate = useNavigate();
     const { login } = useContext(AuthContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const formData = new FormData(e.target);
-        const usuario = formData.get("usuario");
-        const password = formData.get("password");
 
         if (login(usuario, password)) {
-            navigate("/listdo");
+            navigate("/listado");
         }
     };
 
@@ -21,16 +20,28 @@ function Login() {
     
 
     return (
-        <div>
+        <div style={{ maxWidth: "400px", margin: "0 auto", padding: "20px" }}>
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="usuario">Usuario:</label>
-                    <input type="text" id="usuario" name="usuario" />
+                    <input
+                        type="text"
+                        id="usuario"
+                        name="usuario"
+                        value={usuario}
+                        onChange={(e) => setUsuario(e.target.value)}
+                    />
                 </div>
                 <div>
                     <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" name="password" />
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
                 </div>
                 <button type="submit">Iniciar Sesión</button>
             </form>
@@ -38,3 +49,5 @@ function Login() {
         </div>
     );
 }
+
+export default Login;
