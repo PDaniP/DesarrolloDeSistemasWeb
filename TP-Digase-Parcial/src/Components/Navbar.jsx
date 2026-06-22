@@ -8,6 +8,9 @@ function Navbar() {
   const { favoritos } = useContext(FavoritosContext);
   const { usuario, logout } = useContext(AuthContext);
 
+  if (!usuario) return null;
+
+
   const handleLogout = () => {
     logout();
     navigate("/login");
