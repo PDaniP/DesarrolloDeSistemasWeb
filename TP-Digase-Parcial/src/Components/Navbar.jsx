@@ -29,10 +29,11 @@ function Navbar() {
 
       {usuario && (
         <div style={styles.links}>
+          {usuario?.rol === "admin" && (
           <Link to="/" style={styles.link}>
             Inicio
           </Link>
-
+          )}
           <Link to="/listado" style={styles.link}>
             Listado
           </Link>
