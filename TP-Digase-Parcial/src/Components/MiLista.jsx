@@ -53,7 +53,7 @@ function MiLista() {
               <p><strong>Títulos Nacionales:</strong> {equipo.cantidadDeTitulosNacionales}</p>
               <p><strong>Títulos Internacionales:</strong> {equipo.cantidadDeTitulosInternacionales}</p>
               <div style={styles.cardActions}>
-                <Link to={`/detalle/${equipo.id}`} style={styles.detailLink}>
+                <Link to={`/detalle/${equipo.id}`} style={styles.detailButton}>
                   Ver detalle
                 </Link>
               </div>
@@ -75,11 +75,13 @@ function MiLista() {
 const styles = {
   container: {
     padding: "32px 20px",
-    maxWidth: "1100px",
+    maxWidth: "400px",
     margin: "0 auto",
   },
   searchRow: {
     marginBottom: "20px",
+    maxWidth: "400px",
+    justifyContent: "center",
   },
   input: {
     width: "100%",
@@ -152,12 +154,19 @@ const styles = {
     padding: "0",
     cursor: "pointer",
   },
-  detailLink: {
-    display: "inline-block",
-    marginTop: "12px",
-    color: "#1d4ed8",
+  detailButton: {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: "10px",
+    padding: "5px 12px",
+    borderRadius: "8px",
+    backgroundColor: "#025a80",
+    color: "#fcfcfc",
     textDecoration: "none",
-    fontWeight: "600",
+    fontWeight: "700",
+    border: "none",
+    cursor: "pointer",
   },
   linkBack: {
     display: "inline-block",
