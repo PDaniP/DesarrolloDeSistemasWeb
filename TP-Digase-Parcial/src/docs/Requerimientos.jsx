@@ -107,8 +107,10 @@ function Requerimientos() {
       <ul style={styles.lista}>
 
         <li style={styles.itemLista}>
-          El formulario debe contener los campos obligatorios del equipo,
-          como nombre, país y datos principales.
+          El formulario debe contener los campos obligatorios del equipo
+          como nombre (string), país (string), Liga (string) y datos principales tales como
+          la cantidad de titulos nacionales (integer), internacionales (integer), el año de fundacion (integer) y la capacidad del 
+          estadio (integer). Ademas se añaden los colores de la camiseta (string).
         </li>
 
 

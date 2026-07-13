@@ -9,11 +9,15 @@ import {
 } from "../services/api";
 import DetalleCard from "../components/DetalleCard";
 import { FavoritosContext } from "../context/FavoritosContext";
+import { AuthContext } from "../context/AuthContext";
 
 const Detalle = () => {
   const { favoritos, agregarFavoritos, quitarFavoritos } = useContext(FavoritosContext);
+  const { usuario } = useContext(AuthContext);
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const esAdmin = usuario?.rol === "admin";
 
   const [equipo, setEquipo] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -123,6 +127,12 @@ const Detalle = () => {
     }
   };
 
+  const handleEditar = () => {
+    if (esAdmin) {
+      setEditando(true);
+    }
+  };
+
   // RENDER
   if (loading) return <p>Cargando datos...</p>;
   if (error) return <p>Error al cargar el equipo</p>;
@@ -152,15 +162,19 @@ const Detalle = () => {
             >
               {esFavorito ? 'Quitar de Favoritos' : 'Agregar a Favoritos'}
             </button>
-            <button onClick={() => setEditando(true)} style={{ marginRight: '10px' }}>
-              Editar
-            </button>
-            <button onClick={handleDelete}>
-              Eliminar
-            </button>
+            {esAdmin && (
+              <>
+                <button onClick={handleEditar} style={{ marginRight: '10px' }}>
+                  Editar
+                </button>
+                <button onClick={handleDelete}>
+                  Eliminar
+                </button>
+              </>
+            )}
           </div>
         </>
-      ) : (
+      ) : esAdmin ? (
         <form onSubmit={handleSubmit} style={styles.form}>
           <h2 style={styles.formTitle}>Editar Equipo</h2>
 
@@ -204,6 +218,8 @@ const Detalle = () => {
             </button>
           </div>
         </form>
+      ) : (
+        <p>No tienes permisos para editar este equipo.</p>
       )}
     </div>
   );
