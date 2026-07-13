@@ -68,7 +68,10 @@ function Navbar() {
       <div style={styles.leftGroup}>
         <h2 style={styles.logo}>Equipos</h2>
         {usuario && (
-          <div style={styles.countBadge}>Guardados: {favoritos.length}</div>
+          <>
+            <div style={styles.countBadge}>Conectado: {usuario.username}</div>
+            <div style={styles.countBadge}>Guardados: {favoritos.length}</div>
+          </>
         )}
       </div>
 
@@ -113,7 +116,7 @@ function Navbar() {
           <>
             {usuario?.rol === "admin" && (
               <Link to="/" style={styles.link}>
-                Inicio
+                Agregar equipo
               </Link>
             )}
 
@@ -130,13 +133,13 @@ function Navbar() {
             </button>
           </>
         )}
-
-        {/* LOGIN SI NO HAY USUARIO */}
+        {/*
         {!usuario && (
           <Link to="/login" style={styles.link}>
             Login
           </Link>
         )}
+        */}
       </div>
       <Modal
         abierto={modalAbierto}
@@ -169,6 +172,14 @@ const styles = {
     color: "#fff",
     margin: 0,
   },
+  userBadge: {
+    color: "#fff",
+    backgroundColor: "#4f46e5",
+    borderRadius: "999px",
+    padding: "4px 10px",
+    fontSize: "0.9rem",
+    fontWeight: "bold",
+  },
   countBadge: {
     color: "#222",
     backgroundColor: "#fff",
@@ -191,7 +202,7 @@ const styles = {
   favoriteButton: {
     color: "#222",
     backgroundColor: "#facc15",
-    padding: "8px 12px",
+    padding: "4px 12px",
     borderRadius: "8px",
     textDecoration: "none",
     fontWeight: "700",
