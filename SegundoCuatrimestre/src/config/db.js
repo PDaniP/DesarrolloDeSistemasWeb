@@ -10,14 +10,15 @@ const pool = new Pool({
 });
 
 //Test de conexion
+/*
 pool.query('SELECT 1 + 1 AS solucion')
-    .then(([rows]) => {
+    .then(({ rows }) => {
         console.log('DB conectada. Test query.', rows[0].solucion);
     })
     .catch(err => {
         console.error('Error al conectar a db.', err);
     });
-
+*/
 
 
 module.exports = pool;
