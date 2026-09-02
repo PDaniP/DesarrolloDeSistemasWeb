@@ -12,4 +12,14 @@ const crearUsuario = async (nombre, email, passwordHasheada) => {
     return rows
 };
 
-module.exports = { crearUsuario }
+const obtenerPorEmail = async (id) => {
+    
+    const query = 'SELECT * FROM usuarios WHERE id = $1';
+
+    const { rows } = await pool.query(query, [id])
+
+    return rows[0]
+}
+
+
+module.exports = { crearUsuario, obtenerPorEmail }
