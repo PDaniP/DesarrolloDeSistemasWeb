@@ -49,10 +49,11 @@ const validarToken = (req, res, next) => {
             token,
             process.env.JWT_SECRET
         );
-
+        //con la siguiente linea, agregamos y guardamos la info del usuario en la peticion
+        //para que pueda ser usada en el controlador
         req.usuario = usuario;
 
-        next();
+        next(); //esto seria "el token es valido, continua con la siguiente parte de la peticion"
 
     } catch (error) {
 
@@ -63,4 +64,4 @@ const validarToken = (req, res, next) => {
     }
 }
 
-module.export = validarToken;
+module.exports = validarToken;
