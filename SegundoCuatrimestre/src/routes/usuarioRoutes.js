@@ -21,4 +21,8 @@ router.get('/perfil', usuarioPerfil.perfil);
 
 router.post('/publicar', publicacionesController.publicar);
 
+router.delete('/publicaciones/:id', publicacionesController.eliminarPublicacion);
+
+router.put('/publicaciones/:id', publicacionesController.editarPublicacion);
+
 module.exports = router;
