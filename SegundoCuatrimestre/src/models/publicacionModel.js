@@ -1,22 +1,23 @@
-const obtenerTodas = async ({ search, limit, offset }) => {
+const pool = require('../db');
+
+const obtenerTodas = async ({ search = '', limit = 10, offset = 0 }) => {
     let query = `
         SELECT id, titulo, contenido, autor_id
         FROM publicaciones
     `;
 
-    const params = [];
+    const values = [];
 
     if (search) {
-        query += `WHERE titulo LIKE ? OR contenido LIKE ? `;
-        const texto = `%${search}%`;
-        params.push(texto, texto);
+        query += ` WHERE titulo ILIKE $1 OR contenido ILIKE $1 `;
+        values.push(`%${search}%`);
     }
 
-    query += `LIMIT ? OFFSET ?`;
-    params.push(Number(limit), Number(offset));
+    query += ` LIMIT $${values.length + 1} OFFSET $${values.length + 2} `;
+    values.push(Number(limit), Number(offset));
 
-    return await db.query(query, params);
-
+    const { rows } = await pool.query(query, values);
+    return rows;
 };
 
 module.exports = { obtenerTodas };
