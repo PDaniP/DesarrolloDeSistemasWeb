@@ -17,4 +17,4 @@ const registrarUsuario = (req, res, next) => {
   return next();
 };
 
-module.exports = registrarUsuario;
+module.exports = { passRegex, registrarUsuario};
