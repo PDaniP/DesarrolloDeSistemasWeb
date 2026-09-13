@@ -4,12 +4,12 @@ const usuarioController = require('../controllers/usuarioController');
 const usuarioPerfil = require('../controllers/usuarioPerfil');
 const busquedaPorEmail = require('../controllers/busquedaPorEmail');
 const validarToken = require('../middlewares/validacion');
-const validarUsuario = require('../middlewares/validacionRegEx');
+const { registrarUsuario } = require('../middlewares/validacionRegEx');
 const publicacionesController = require("../controllers/controllerUsuarioPost");
 const buscadorDinamico = require('../controllers/busquedaDinamica');
 
 //Definicion de la ruta
-router.post('/registro', validarUsuario, usuarioController.registrar);
+router.post('/registro', registrarUsuario, usuarioController.registrar);
 
 router.post('/login', busquedaPorEmail.login);
 
