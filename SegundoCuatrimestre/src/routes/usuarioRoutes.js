@@ -6,6 +6,7 @@ const busquedaPorEmail = require('../controllers/busquedaPorEmail');
 const validarToken = require('../middlewares/validacion');
 const validarUsuario = require('../middlewares/validacionRegEx');
 const publicacionesController = require("../controllers/controllerUsuarioPost");
+const buscadorDinamico = require('../controllers/busquedaDinamica');
 
 //Definicion de la ruta
 router.post('/registro', validarUsuario, usuarioController.registrar);
@@ -19,7 +20,10 @@ router.use(validarToken);
 
 router.get('/perfil', usuarioPerfil.perfil);
 
+router.get('/publicaciones', buscadorDinamico.listarPublicaciones);
+
 router.post('/publicar', publicacionesController.publicar);
+
 
 router.delete('/publicaciones/:id', publicacionesController.eliminarPublicacion);
 
