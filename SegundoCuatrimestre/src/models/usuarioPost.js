@@ -22,7 +22,7 @@ const obtenerPublicacionPorId = async (id) => {
         WHERE id = $1    
     `;
 
-    const { rows } = pool.query(query, [id]);
+    const { rows } = await pool.query(query, [id]);
     return rows[0];
 };
 
